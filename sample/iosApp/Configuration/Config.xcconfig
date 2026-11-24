@@ -1,0 +1,9 @@
+// kmp-flavors reads these as environment variables when Xcode runs Gradle
+// (Xcode exports every build setting to run-script phases). The build type comes from
+// CONFIGURATION: Debug → debug, Release → release.
+// iOS has no Google Play: ship the FOSS store flavor.
+KMP_FLAVOR_STORE = oss
+
+// Or pin the whole variant: KMP_VARIANT = ossRelease
+
+PRODUCT_BUNDLE_IDENTIFIER = sample.showcase.ios
