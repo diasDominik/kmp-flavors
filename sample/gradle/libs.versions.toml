@@ -1,0 +1,30 @@
+[versions]
+agp = "9.5.2"
+kotlin = "2.4.20"
+compose = "1.12.2"
+compose-material3 = "1.12.0-alpha03"
+androidx-activity = "1.13.0"
+# Scanning: closed-source Google ML Kit in play builds, open-source zxing-cpp in oss builds.
+mlkit-barcode = "17.3.0"
+mlkit-text = "16.0.1"
+zxing-cpp = "3.1.1"
+
+[libraries]
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
+compose-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+mlkit-barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "mlkit-barcode" }
+mlkit-text-recognition = { module = "com.google.mlkit:text-recognition", version.ref = "mlkit-text" }
+zxing-cpp-android = { module = "io.github.zxing-cpp:android", version.ref = "zxing-cpp" }
+zxing-cpp-native = { module = "io.github.zxing-cpp:kotlin-native", version.ref = "zxing-cpp" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-kmp-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
