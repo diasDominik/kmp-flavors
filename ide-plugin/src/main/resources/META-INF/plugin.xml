@@ -1,0 +1,39 @@
+<idea-plugin>
+    <id>uk.dominikdias.kmp-flavors</id>
+    <name>KMP Flavors</name>
+    <vendor>kmp-flavors</vendor>
+    <description><![CDATA[
+    IDE support for the <code>uk.dominikdias.kmp-flavors</code> Gradle plugin, which brings Android-style
+    flavor dimensions, product flavors and build types to Kotlin Multiplatform.
+    <ul>
+      <li>Status bar widget and <b>Tools | Select KMP Variant…</b> to switch the variant the IDE syncs
+          (stored as <code>kmp.variant</code> in <code>local.properties</code>), followed by a Gradle sync.</li>
+      <li>Flavor folders the active variant does not use are greyed out in the Project view.</li>
+      <li>Files in those folders get a banner explaining why they are not analysed, with a one-click switch.</li>
+    </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.gradle</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <statusBarWidgetFactory id="KmpFlavorsVariant" implementation="uk.dominikdias.kmpflavors.ide.VariantWidgetFactory"/>
+        <projectViewNodeDecorator implementation="uk.dominikdias.kmpflavors.ide.FlavorFolderDecorator"/>
+        <editorNotificationProvider implementation="uk.dominikdias.kmpflavors.ide.InactiveFlavorNotificationProvider"/>
+        <postStartupActivity implementation="uk.dominikdias.kmpflavors.ide.KmpFlavorsStartup"/>
+    </extensions>
+
+    <projectListeners>
+        <listener class="uk.dominikdias.kmpflavors.ide.SyncListener"
+                  topic="com.intellij.openapi.externalSystem.service.project.manage.ProjectDataImportListener"/>
+        <listener class="uk.dominikdias.kmpflavors.ide.ModelFileListener"
+                  topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </projectListeners>
+
+    <actions>
+        <action id="KmpFlavors.SelectVariant" class="uk.dominikdias.kmpflavors.ide.SelectVariantAction"
+                text="Select KMP Variant…" description="Choose the kmp-flavors variant the IDE syncs">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
